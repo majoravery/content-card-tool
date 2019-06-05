@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { InAppConfig } from "./InAppConfig";
+import Editor from "./editor/Editor";
+import Preview from "./preview/Preview";
 
 const App: React.FC = () => {
+  const [config, setConfig] = useState<InAppConfig>({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Editor config={config} setConfig={setConfig} />
+      <Preview config={config} />
+    </React.Fragment>
   );
-}
+};
 
 export default App;

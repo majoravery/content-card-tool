@@ -9,8 +9,6 @@ const {
 } = StyledComponents as any;
 const { StyleSheet } = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
 
-StyleSheet.reset(false);
-
 type ExportProps = {
   config: InAppConfig;
 };
@@ -36,6 +34,7 @@ const Export: React.FC<ExportProps> = ({ config }) => {
 };
 
 function generateCode(config: InAppConfig) {
+  StyleSheet.reset(false);
   const renderedHTML = ReactDOMServer.renderToString(
     <Preview config={config} />
   );

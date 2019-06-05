@@ -30,7 +30,7 @@ const Export: React.FC<ExportProps> = ({ config }) => {
           Export Code
         </Button>
       }
-      {exportVisible && <textarea>{exportedCode}</textarea>}
+      {exportVisible && <textarea defaultValue={exportedCode} />}
     </React.Fragment>
   );
 };

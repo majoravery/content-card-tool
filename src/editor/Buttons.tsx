@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { black, platinum, raven} from "./colors";
+import { black, platinum, raven } from "../colors";
 
 export const Button = styled.div`
   border: 1px solid ${platinum};

@@ -1,6 +1,6 @@
-import React, {ChangeEvent} from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import {platinum, raven} from "./colors";
+import { platinum, raven } from "../colors";
 
 const StyledInput = styled.input`
   border: 1px solid ${platinum};
@@ -25,17 +25,13 @@ type InputProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input: React.FC<InputProps> = ({label, value, onChange}) => {
+const Input: React.FC<InputProps> = ({ label, value, onChange }) => {
   return (
     <React.Fragment>
-          <label><StyledLabel>{label}</StyledLabel>
-            <StyledInput
-              type="text"
-              value={value}
-              onChange={onChange}
-            />
-          </label>
-
+      <label>
+        <StyledLabel>{label}</StyledLabel>
+        <StyledInput type="text" value={value} onChange={onChange} />
+      </label>
     </React.Fragment>
   );
 };

@@ -28,10 +28,10 @@ export const Horizontal: React.FC<HorizontalProps> = ({
       <ContentContainer>
         <div>
           <Headline>{headline}</Headline>
+          <Description>{text}</Description>
           <PrimaryButton href={buttons.primary.link}>
             {buttons.primary.text}
           </PrimaryButton>
-          <Description>{text}</Description>
           {legalText && <LegalText>{legalText}</LegalText>}
         </div>
       </ContentContainer>

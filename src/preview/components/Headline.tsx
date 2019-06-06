@@ -9,4 +9,5 @@ export const Headline = styled.h1`
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: ${raven};
+  margin: 4px 0;
 `;

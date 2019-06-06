@@ -28,6 +28,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   width: 790px;
   height: 350px;
+  overflow: auto;
 `;
 
 export const Modal: React.FC = ({ children }) => (

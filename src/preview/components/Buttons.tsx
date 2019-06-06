@@ -9,11 +9,12 @@ export const PrimaryButton = styled.a`
   border: 0;
   letter-spacing: 0.4px;
   color: ${white};
-  width: 100%;
+  min-width: 224px;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
   text-align: center;
+  margin: 12px 0;
 
   &:hover {
     background-color: ${umber};

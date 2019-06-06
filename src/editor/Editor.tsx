@@ -18,7 +18,7 @@ type EditorProps = {
 
 const Editor: React.FC<EditorProps> = ({ config, setConfig }) => {
   return (
-    <React.Fragment>
+    <div>
       <h2>Editor</h2>
       <ButtonContainer>
         {InAppKinds.map(kind => (
@@ -34,7 +34,7 @@ const Editor: React.FC<EditorProps> = ({ config, setConfig }) => {
       <Form config={config} setConfig={setConfig} />
       <h3>Export</h3>
       <Export config={config} />
-    </React.Fragment>
+    </div>
   );
 };
 

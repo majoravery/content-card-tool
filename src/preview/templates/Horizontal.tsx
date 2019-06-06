@@ -7,16 +7,11 @@ import { Headline } from "../components/Headline";
 import { PrimaryButton } from "../components/Buttons";
 import { Description } from "../components/Description";
 import { LegalText } from "../components/LegalText";
+import { HorizontalContainer } from "../components/Containers";
 
 type HorizontalProps = {
   config: InAppConfig;
 };
-
-const HorizontalContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const ContentContainer = styled.div`
   padding: 30px;
@@ -25,11 +20,11 @@ const ContentContainer = styled.div`
 `;
 
 export const Horizontal: React.FC<HorizontalProps> = ({
-  config: { headline, buttons, text, legalText }
+  config: { imageUrl, headline, buttons, text, legalText }
 }) => {
   return (
     <HorizontalContainer>
-      <VerticalImage src="https://placekitten.com/600/600" />
+      <VerticalImage src={imageUrl} />
       <ContentContainer>
         <div>
           <Headline>{headline}</Headline>

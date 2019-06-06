@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { InAppConfig, Horizontal } from "./InAppConfig";
 import Editor from "./editor/Editor";
 import Preview from "./preview/Preview";
+import { HorizontalContainer } from "./preview/components/Containers";
 
 const emptyButton = { text: "", link: "" };
 const emptyConfig = {
@@ -20,10 +21,12 @@ const emptyConfig = {
 const App: React.FC = () => {
   const [config, setConfig] = useState<InAppConfig>(emptyConfig);
   return (
-    <React.Fragment>
-      <Editor config={config} setConfig={setConfig} />
+    <HorizontalContainer>
+      <div style={{ marginRight: 30 }}>
+        <Editor config={config} setConfig={setConfig} />
+      </div>
       <Preview config={config} />
-    </React.Fragment>
+    </HorizontalContainer>
   );
 };
 

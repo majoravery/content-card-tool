@@ -1,11 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { InAppConfig } from "../InAppConfig";
-import { PrimaryButton, SecondaryButton } from "./components/Buttons";
-import { Headline } from "./components/Headline";
-import { Description } from "./components/Description";
-import { LegalText } from "./components/LegalText";
-import { VerticalImage } from "./components/Image";
+import { InAppConfig, Horizontal } from "../InAppConfig";
+import { Horizontal as HorizontalTemplate } from "./templates/Horizontal";
 
 type PreviewProps = {
   config: InAppConfig;
@@ -26,27 +22,17 @@ const Container = styled.div`
 `;
 
 const Preview: React.FC<PreviewProps> = ({ config }) => {
+  const Template = config.kind === Horizontal ? HorizontalTemplate : undefined;
+
   return (
     <React.Fragment>
+      <h2>Preview</h2>
       <GlobalStyles />
       <link
         rel="stylesheet"
         href="https://style.sndcdn.com/css/interstate-9a7e854c95d1b49e3807d5ea457e6e538034dc55.css"
       />
-      <Container>
-        <VerticalImage src="https://placekitten.com/600/600" />
-        <Headline>This is the headline, isn't it cool?</Headline>
-        <PrimaryButton>Test text</PrimaryButton>
-        <SecondaryButton>Test text</SecondaryButton>
-        <Description>
-          This is a super long text!!This is a super long text!!This is a super
-          long text!!This is a super long text!!
-        </Description>
-        <LegalText>* This is the legal text</LegalText>
-      </Container>
-      <h2>Preview (only renders the config for now)</h2>
-
-      {JSON.stringify(config, null, 2)}
+      <Container>{Template && <Template config={config} />}</Container>
     </React.Fragment>
   );
 };

@@ -6,13 +6,15 @@ import Preview from "./preview/Preview";
 const emptyButton = { text: "", link: "" };
 const emptyConfig = {
   kind: Horizontal,
-  headline: "",
-  imageUrl: "",
-  text: "",
+  headline: "Get 10% off Soundcloud pro unlimited",
+  imageUrl: "https://placekitten.com/400/600",
+  text:
+    "Make sure you’re staying on track. Renew today to regain access to advanced stats, more upload time, spotlight, and quiet mode for 10% off the annual price.",
   buttons: {
-    primary: emptyButton,
+    primary: { text: "Renew Pro Unlimited with 10% discount", link: "" },
     secondary: emptyButton
-  }
+  },
+  legalText: "*Discount applies to first year only"
 };
 
 const App: React.FC = () => {

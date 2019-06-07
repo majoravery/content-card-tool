@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { InAppConfig, Horizontal } from "./InAppConfig";
 import Editor from "./editor/Editor";
 import Preview from "./preview/Preview";
-import { HorizontalContainer } from "./preview/components/Containers";
+import Export from "./export/Export";
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1em 5em;
+  max-width: 1150px;
+}`;
+
+const EditorPreviewContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const emptyButton = { text: "", link: "" };
 const emptyConfig = {
@@ -21,12 +34,13 @@ const emptyConfig = {
 const App: React.FC = () => {
   const [config, setConfig] = useState<InAppConfig>(emptyConfig);
   return (
-    <HorizontalContainer>
-      <div style={{ marginRight: 30 }}>
+    <AppContainer>
+      <EditorPreviewContainer>
         <Editor config={config} setConfig={setConfig} />
-      </div>
-      <Preview config={config} />
-    </HorizontalContainer>
+        <Preview config={config} />
+      </EditorPreviewContainer>
+      <Export config={config} />
+    </AppContainer>
   );
 };
 

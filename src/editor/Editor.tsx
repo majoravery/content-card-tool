@@ -1,7 +1,6 @@
 import React from "react";
 import { InAppConfig, InAppKinds, InAppKind } from "../InAppConfig";
 import { KindButton } from "./Buttons";
-import Export from "./Export";
 import Form from "./Form";
 import styled from "styled-components";
 
@@ -32,8 +31,6 @@ const Editor: React.FC<EditorProps> = ({ config, setConfig }) => {
         ))}
       </ButtonContainer>
       <Form config={config} setConfig={setConfig} />
-      <h3>Export</h3>
-      <Export config={config} />
     </div>
   );
 };

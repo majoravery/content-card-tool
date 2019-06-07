@@ -10,6 +10,17 @@ const {
 } = StyledComponents as any;
 const { StyleSheet } = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
 
+type ExportWrapperProps = {
+  css: string;
+  body: string;
+};
+export const ExportWrapper: React.FC<ExportWrapperProps> = ({ css, body }) => (
+  <html>
+    <head dangerouslySetInnerHTML={{ __html: css }} />
+    <body dangerouslySetInnerHTML={{ __html: body }} />
+  </html>
+);
+
 export default function generateCode(config: InAppConfig) {
   StyleSheet.reset(false);
   const renderedHTML = ReactDOMServer.renderToString(
@@ -17,6 +28,7 @@ export default function generateCode(config: InAppConfig) {
   );
   const renderedCSS = StyleSheet.instance.toHTML();
 
-  return `${renderedCSS}
-  ${renderedHTML}`;
+  return ReactDOMServer.renderToString(
+    <ExportWrapper css={renderedCSS} body={renderedHTML} />
+  );
 }

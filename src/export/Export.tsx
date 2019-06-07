@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { InAppConfig } from "../InAppConfig";
 import { Button } from "../editor/Buttons";
 import generateCode from "./generate-code";
+import { raven } from "../colors";
 
 const VerticalContainer = styled.div`
   display: flex;
@@ -11,9 +12,9 @@ const VerticalContainer = styled.div`
   width: 100%;
 `;
 
-const TextArea = styled.textarea`
-  width: 100%;
-  height: 200px;
+const CopyMessage = styled.div`
+  margin: 10px 0px;
+  color: ${raven};
 `;
 
 type ExportProps = {
@@ -21,21 +22,31 @@ type ExportProps = {
 };
 
 const Export: React.FC<ExportProps> = ({ config }) => {
-  const [exportVisible, setExportVisible] = useState(false);
+  const [showCopyMessage, setShowCopyMessage] = useState(false);
+
   return (
     <VerticalContainer>
-      <div>
-        <Button
-          onClick={() => {
-            setExportVisible(!exportVisible);
-          }}
-        >
-          Export Code
-        </Button>
-      </div>
-      {exportVisible && <TextArea defaultValue={generateCode(config)} />}
+      <Button
+        onClick={() => {
+          copyToClipboard(generateCode(config));
+          setShowCopyMessage(true);
+          setTimeout(() => setShowCopyMessage(false), 3000);
+        }}
+      >
+        Export Code
+      </Button>
+      {showCopyMessage && <CopyMessage>Copied to clipboard!</CopyMessage>}
     </VerticalContainer>
   );
+};
+
+const copyToClipboard = (text: string) => {
+  const el = document.createElement("textarea");
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
 };
 
 export default Export;

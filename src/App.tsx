@@ -10,6 +10,10 @@ const AppContainer = styled.div`
   flex-direction: column;
   padding: 1em 5em;
   max-width: 1150px;
+
+  @media (max-width: 1200px) {
+    padding: 1em;
+  }
 }`;
 
 const EditorPreviewContainer = styled.div`

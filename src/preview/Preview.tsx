@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const PreviewContainer = styled.div`
   position: relative;
-  width: 800px;
+  width: 850px;
   height: 700px;
 `;
 

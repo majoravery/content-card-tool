@@ -25,7 +25,7 @@ const Container = styled.div`
 const PreviewContainer = styled.div`
   position: relative;
   width: 800px;
-  height: 800px;
+  height: 700px;
 `;
 
 const Preview: React.FC<PreviewProps> = ({ config }) => {

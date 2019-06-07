@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Image = styled.img`
+type ImageProps = {
+  src: string;
+};
+
+export const Image = styled.div<ImageProps>`
   background-size: cover;
   background-position: center center;
   background-image: url(${props => props.src});
@@ -9,5 +13,5 @@ export const Image = styled.img`
 
 export const VerticalImage = styled(Image)`
   width: 250px;
-  height: 350px;
+  min-height: 350px;
 `;

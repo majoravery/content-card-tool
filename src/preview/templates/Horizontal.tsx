@@ -16,7 +16,8 @@ type HorizontalProps = {
 const ContentContainer = styled.div`
   padding: 30px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Horizontal: React.FC<HorizontalProps> = ({
@@ -26,14 +27,14 @@ export const Horizontal: React.FC<HorizontalProps> = ({
     <HorizontalContainer>
       <VerticalImage src={imageUrl} />
       <ContentContainer>
+        <Headline>{headline}</Headline>
+        <Description>{text}</Description>
         <div>
-          <Headline>{headline}</Headline>
-          <Description>{text}</Description>
           <PrimaryButton href={buttons.primary.link}>
             {buttons.primary.text}
           </PrimaryButton>
-          {legalText && <LegalText>{legalText}</LegalText>}
         </div>
+        {legalText && <LegalText>{legalText}</LegalText>}
       </ContentContainer>
     </HorizontalContainer>
   );

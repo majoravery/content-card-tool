@@ -33,7 +33,7 @@ const Export: React.FC<ExportProps> = ({ config }) => {
           setTimeout(() => setShowCopyMessage(false), 3000);
         }}
       >
-        Export Code
+        Copy Code
       </Button>
       {showCopyMessage && <CopyMessage>Copied to clipboard!</CopyMessage>}
     </VerticalContainer>

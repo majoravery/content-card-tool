@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import { InAppConfig } from "../InAppConfig";
 import { Button } from "./Buttons";
 import * as StyledComponents from "styled-components";
-import Preview from "../preview/Preview";
+import { PreviewContent } from "../preview/Preview";
 const {
   __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS
 } = StyledComponents as any;
@@ -36,7 +36,7 @@ const Export: React.FC<ExportProps> = ({ config }) => {
 function generateCode(config: InAppConfig) {
   StyleSheet.reset(false);
   const renderedHTML = ReactDOMServer.renderToString(
-    <Preview config={config} />
+    <PreviewContent config={config} />
   );
   const renderedCSS = StyleSheet.instance.toHTML();
 

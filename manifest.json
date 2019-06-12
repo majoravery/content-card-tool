@@ -1,0 +1,9 @@
+{
+  "name": "in-app-tool",
+  "description": "A web app that allows the CRM team to creat HTML in-app-messages",
+  "contact_email": "creator-growth@soundcloud.com",
+  "owner": "creator-growth",
+  "status": "beta",
+  "data_sensitivity": ["no_user_data"],
+  "dependencies": []
+}

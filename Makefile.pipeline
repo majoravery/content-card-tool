@@ -1,0 +1,38 @@
+BUILD_STACK = nodejs-8-dev
+
+ZONE ?= db
+
+.PHONY: build assemble package publish promote-to-stable promote-to-release publish-deploy deploy clean
+
+build:
+	sc crun $(BUILD_STACK) make build
+
+assemble:
+	sc add-files build
+	sc add-config config/production
+	sc gen-wrapper-script --target='../../static-files/app/run' --wrapper=web
+
+package: assemble
+	sc artifact-manager package --runtime="static-files"
+
+publish: package
+	sc artifact-manager publish
+
+promote-to-stable:
+	sc artifact-manager promote stable
+
+promote-to-release:
+	sc artifact-manager promote release
+
+publish-deploy:
+	sc artifact-manager deploy publish \
+		--ingress="http://in-app-tool.lb.$(ZONE).s-cloud.net:http/" \
+		--ingress="http://in-app-tool.int.s-cloud.net:http/" \
+		--zone="$(ZONE)" \
+		--prometheus.port=telemetry
+
+deploy:
+	sc artifact-manager deploy run --zone=$(ZONE)
+
+clean:
+	rm -rf target build

@@ -1,7 +1,7 @@
 containers:
   - name: web
-    image: { { image } }
-    command: { { cmd } }
+    image: {{ image }}
+    command: {{ cmd }}
     ports:
       - name: http
         containerPort: 80

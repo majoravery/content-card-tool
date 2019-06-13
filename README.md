@@ -2,6 +2,8 @@
 
 This web app allows the CRM team to create HTML/CSS modals for Braze in-app messages.
 
+http://go/inapptool
+
 ## Development
 
 `npm install` to install all dependencies.

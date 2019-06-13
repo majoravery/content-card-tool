@@ -1,44 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# In-App-Tool
 
-## Available Scripts
+This web app allows the CRM team to create HTML/CSS modals for Braze in-app messages.
 
-In the project directory, you can run:
+## Development
 
-### `npm start`
+`npm install` to install all dependencies.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm start` will start a development server at [http://localhost:3000](http://localhost:3000). The server has live-reload enabled.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Architecture
 
-### `npm test`
+The app is split into three main parts: `editor`, `export` and `preview`.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `editor`: Contains all components that are needed for the changing the config of a template
+- `export`: The component and logic that we use to copy the generated markup into the users clipboard
+- `preview`: The templates and components that make up the in-app message
 
-### `npm run build`
+### Styling
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The in-app-tool uses [styled-components](https://www.styled-components.com/) to style its own components as well as to style the static exported components. We chose `styled-components` after carful considerations of all alternatives. The goal of this app is to generate static HTML/CSS that we can generate solely on the client. Other styling solutions usually require webpack to generate the styles during the build process. With `styled-components` we are able to extract all of the app's CSS on the client. Previous concerns with `styled-components` were all related to its runtime performance which don't apply in the case of our generated HTML/CSS since the output of the export are regular CSS classes. The runtime-concerns might apply for running the tool itself, but it's a very tiny codebase so we should not see a performance hit there.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Export
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The exported HTML/CSS is generated with the help of `ReactDOM`'s `renderToString`. We essentially render a template and it's config to a string which returns the final HTML. In addition to that we use `styled-components` secret `StyleSheet` API to extract the CSS. We then combine the HTML and CSS into a static template and render that to a combined static HTML file.
 
-### `npm run eject`
+### Making templates interactive
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Since we do not include React in the exported markup to keep the in-app messages as small as possible, we cannot use React to make our components interactive. The components are rendered statically into an HTML string and none of the React code makes it into the export. What we can do instead though, is to render `<script />` tags into our components that contain old-school JS that manipulates the DOM. A good example for the usage can be found in the implementation of the `<Modal />` component.

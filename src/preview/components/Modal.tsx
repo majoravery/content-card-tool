@@ -37,8 +37,6 @@ const ModalContent = styled.div`
  * exported code. It can not depend on variables outside of its own scope.
  */
 function closeModal() {
-  window.console.log("test");
-
   const closeButton: HTMLAnchorElement | null = document.querySelector(
     ".js-inAppModal__close"
   );

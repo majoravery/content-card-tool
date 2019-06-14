@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import extractFunctionBody from "../../lib/extract-function-body";
 
 const ModalElement = styled.div`
   display: flex;
@@ -31,9 +32,55 @@ const ModalContent = styled.div`
   overflow: auto;
 `;
 
-export const Modal: React.FC = ({ children }) => (
-  <ModalElement>
-    <ModalClose href="javascript:appboyBridge.closeMessage()" />
-    <ModalContent>{children}</ModalContent>
-  </ModalElement>
-);
+/**
+ * This function gets statically inlined and will only execute in the
+ * exported code. It can not depend on variables outside of its own scope.
+ */
+function closeModal() {
+  const closeButton: HTMLAnchorElement | null = document.querySelector(
+    ".js-inAppModal__close"
+  );
+  function close() {
+    if (closeButton) {
+      closeButton.click();
+    }
+  }
+  // Close modal with ESC
+  document.addEventListener("keyup", event => {
+    if (event.keyCode === 27) {
+      close();
+    }
+  });
+
+  // Close modal when background clicked
+  const modalContent = document.querySelector(".js-inAppModal__content");
+  let clickStartedInside = false;
+  if (modalContent) {
+    modalContent.addEventListener("click", () => (clickStartedInside = true));
+  }
+
+  document.addEventListener("click", () => {
+    if (clickStartedInside) {
+      clickStartedInside = false;
+      return;
+    }
+
+    close();
+  });
+}
+
+export const Modal: React.FC = ({ children }) => {
+  return (
+    <ModalElement>
+      <ModalClose
+        className="js-inAppModal__close"
+        href="javascript:appboyBridge.closeMessage()"
+      />
+      <ModalContent className="js-inAppModal__content">{children}</ModalContent>
+
+      <script
+        dangerouslySetInnerHTML={{ __html: extractFunctionBody(closeModal) }}
+      />
+    </ModalElement>
+  );
+};

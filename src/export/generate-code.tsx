@@ -22,7 +22,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({ css, body }) => (
 );
 
 export default function generateCode(config: InAppConfig) {
-  StyleSheet.reset(false);
+  StyleSheet.reset(true);
   const renderedHTML = ReactDOMServer.renderToString(
     <PreviewContent config={config} />
   );

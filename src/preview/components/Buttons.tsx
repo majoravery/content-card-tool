@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { soundcloudOrange, white, umber } from "../../colors";
 
-export const PrimaryButton = styled.a`
+type ButtonProps = {
+  minWidth?: number;
+  stretch?: boolean;
+};
+
+export const PrimaryButton = styled.a<ButtonProps>`
   border-radius: 4px;
   background-color: ${soundcloudOrange};
   padding: 14px 12px;
@@ -9,7 +14,6 @@ export const PrimaryButton = styled.a`
   border: 0;
   letter-spacing: 0.4px;
   color: ${white};
-  min-width: 224px;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
@@ -19,6 +23,17 @@ export const PrimaryButton = styled.a`
   &:hover {
     background-color: ${umber};
   }
+
+  ${props =>
+    props.minWidth &&
+    css`
+      min-width: ${props.minWidth}px;
+    `}
+  ${props =>
+    props.stretch &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const SecondaryButton = styled(PrimaryButton)`

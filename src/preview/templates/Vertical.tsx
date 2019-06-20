@@ -9,7 +9,8 @@ import {
   VerticalTemplateContainer,
   VerticalContentContainer,
   VerticalContentContainerNoImage,
-  HorizontalContainer
+  HorizontalContainer,
+  VerticalContainer
 } from "../components/Containers";
 import { TemplateProps } from "./Template";
 
@@ -18,6 +19,7 @@ export const Vertical: React.FC<TemplateProps> = ({
     imageUrl,
     headline,
     buttons: { primary, secondary },
+    buttonsStacked,
     text,
     legalText
   }
@@ -25,6 +27,9 @@ export const Vertical: React.FC<TemplateProps> = ({
   const ContentContainer = imageUrl
     ? VerticalContentContainer
     : VerticalContentContainerNoImage;
+  const ButtonContainer = buttonsStacked
+    ? VerticalContainer
+    : HorizontalContainer;
   return (
     <VerticalTemplateContainer>
       {imageUrl && <HorizontalImage src={imageUrl} />}
@@ -32,20 +37,39 @@ export const Vertical: React.FC<TemplateProps> = ({
         <Headline>{headline}</Headline>
         <Description>{text}</Description>
         <div>
-          <HorizontalContainer>
-            {secondary && secondary.text && (
-              <SecondaryButton
-                href={secondary.link}
-                style={{ marginRight: "12px" }}
-                stretch={true}
-              >
-                {secondary.text}
-              </SecondaryButton>
+          <ButtonContainer>
+            {buttonsStacked && (
+              <React.Fragment>
+                <PrimaryButton
+                  href={primary.link}
+                  style={{ marginBottom: "16px" }}
+                >
+                  {primary.text}
+                </PrimaryButton>
+                {secondary && secondary.text && (
+                  <SecondaryButton href={secondary.link}>
+                    {secondary.text}
+                  </SecondaryButton>
+                )}
+              </React.Fragment>
             )}
-            <PrimaryButton href={primary.link} stretch={true}>
-              {primary.text}
-            </PrimaryButton>
-          </HorizontalContainer>
+
+            {!buttonsStacked && (
+              <React.Fragment>
+                {secondary && secondary.text && (
+                  <SecondaryButton
+                    href={secondary.link}
+                    style={{ marginRight: "12px" }}
+                  >
+                    {secondary.text}
+                  </SecondaryButton>
+                )}
+                <PrimaryButton href={primary.link}>
+                  {primary.text}
+                </PrimaryButton>
+              </React.Fragment>
+            )}
+          </ButtonContainer>
         </div>
         {legalText && (
           <LegalText style={{ textAlign: "left" }}>{legalText}</LegalText>

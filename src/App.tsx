@@ -31,6 +31,7 @@ const emptyConfig = {
     primary: { text: "Renew Pro Unlimited", link: "" },
     secondary: { text: "Secondary", link: "" }
   },
+  buttonsStacked: true,
   legalText: "*Discount applies to first year only"
 };
 

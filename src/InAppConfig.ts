@@ -19,6 +19,7 @@ export type SimpleConfig = {
   imageUrl: string;
   text: string;
   buttons: ButtonConfig;
+  buttonsStacked?: boolean;
   legalText?: string;
 };
 

@@ -3,7 +3,6 @@ import { soundcloudOrange, white, umber } from "../../colors";
 
 type ButtonProps = {
   minWidth?: number;
-  stretch?: boolean;
 };
 
 export const PrimaryButton = styled.a<ButtonProps>`
@@ -18,7 +17,6 @@ export const PrimaryButton = styled.a<ButtonProps>`
   text-decoration: none;
   cursor: pointer;
   text-align: center;
-  margin: 12px 0;
 
   &:hover {
     background-color: ${umber};
@@ -28,11 +26,6 @@ export const PrimaryButton = styled.a<ButtonProps>`
     props.minWidth &&
     css`
       min-width: ${props.minWidth}px;
-    `}
-  ${props =>
-    props.stretch &&
-    css`
-      width: 100%;
     `}
 `;
 

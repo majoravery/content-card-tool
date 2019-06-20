@@ -21,7 +21,11 @@ export const Horizontal: React.FC<TemplateProps> = ({
         <Headline>{headline}</Headline>
         <Description>{text}</Description>
         <div>
-          <PrimaryButton href={buttons.primary.link} minWidth={224}>
+          <PrimaryButton
+            href={buttons.primary.link}
+            minWidth={224}
+            style={{ margin: "12px 0" }}
+          >
             {buttons.primary.text}
           </PrimaryButton>
         </div>

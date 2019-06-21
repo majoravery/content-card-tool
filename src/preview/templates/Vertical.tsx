@@ -37,7 +37,13 @@ export const Vertical: React.FC<TemplateProps> = ({
       <ContentContainer style={{ textAlign: "center" }}>
         <Headline>{headline}</Headline>
         <Description>{text}</Description>
-        <ButtonContainer style={{ marginBottom: "12px", marginTop: "12px" }}>
+        <ButtonContainer
+          style={{
+            marginBottom: "12px",
+            marginTop: "12px",
+            alignItems: buttonsStacked ? "initial" : "center"
+          }}
+        >
           {buttonsStacked && (
             <React.Fragment>
               <PrimaryButton

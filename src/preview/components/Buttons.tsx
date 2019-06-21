@@ -3,6 +3,7 @@ import { soundcloudOrange, white, umber } from "../../colors";
 
 type ButtonProps = {
   minWidth?: number;
+  stretch?: boolean;
 };
 
 export const PrimaryButton = styled.a<ButtonProps>`
@@ -26,6 +27,11 @@ export const PrimaryButton = styled.a<ButtonProps>`
     props.minWidth &&
     css`
       min-width: ${props.minWidth}px;
+    `}
+  ${props =>
+    props.stretch &&
+    css`
+      flex: 1 1 0;
     `}
 `;
 

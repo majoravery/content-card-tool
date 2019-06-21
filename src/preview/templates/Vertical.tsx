@@ -30,6 +30,7 @@ export const Vertical: React.FC<TemplateProps> = ({
   const ButtonContainer = buttonsStacked
     ? VerticalContainer
     : HorizontalContainer;
+  const hasSecondaryButton = secondary && secondary.text;
   return (
     <VerticalTemplateContainer>
       {imageUrl && <HorizontalImage src={imageUrl} />}
@@ -41,7 +42,7 @@ export const Vertical: React.FC<TemplateProps> = ({
             <React.Fragment>
               <PrimaryButton
                 href={primary.link}
-                style={{ marginBottom: "16px" }}
+                style={{ marginBottom: hasSecondaryButton ? "16px" : 0 }}
               >
                 {primary.text}
               </PrimaryButton>
@@ -55,7 +56,7 @@ export const Vertical: React.FC<TemplateProps> = ({
 
           {!buttonsStacked && (
             <React.Fragment>
-              {secondary && secondary.text && (
+              {hasSecondaryButton && (
                 <SecondaryButton
                   href={secondary.link}
                   stretch={true}

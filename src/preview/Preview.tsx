@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { InAppConfig, Horizontal } from "../InAppConfig";
+import { InAppConfig, Horizontal, InAppKind, Vertical } from "../InAppConfig";
 import { Horizontal as HorizontalTemplate } from "./templates/Horizontal";
+import { Vertical as VerticalTemplate } from "./templates/Vertical";
 import { Modal } from "./components/Modal";
 
 type PreviewProps = {
@@ -30,7 +31,7 @@ const Preview: React.FC<PreviewProps> = ({ config }) => {
 };
 
 export const PreviewContent: React.FC<PreviewProps> = ({ config }) => {
-  const Template = config.kind === Horizontal ? HorizontalTemplate : undefined;
+  const Template = getTemplate(config.kind);
   return (
     <React.Fragment>
       <link
@@ -47,5 +48,16 @@ export const PreviewContent: React.FC<PreviewProps> = ({ config }) => {
     </React.Fragment>
   );
 };
+
+function getTemplate(kind: InAppKind) {
+  switch (kind) {
+    case Horizontal:
+      return HorizontalTemplate;
+    case Vertical:
+      return VerticalTemplate;
+    default:
+      return null;
+  }
+}
 
 export default Preview;

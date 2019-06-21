@@ -1,11 +1,11 @@
 type Horizontal = "Horizontal";
 export const Horizontal: Horizontal = "Horizontal";
 
-type HorizontalOnImage = "HorizontalOnImage";
-export const HorizontalOnImage: HorizontalOnImage = "HorizontalOnImage";
+type Vertical = "Vertical";
+export const Vertical: Vertical = "Vertical";
 
-export type InAppKind = Horizontal | HorizontalOnImage;
-export const InAppKinds = [Horizontal, HorizontalOnImage];
+export type InAppKind = Horizontal | Vertical;
+export const InAppKinds = [Horizontal, Vertical];
 
 export type ButtonConfig = {
   primary: Button;
@@ -19,6 +19,7 @@ export type SimpleConfig = {
   imageUrl: string;
   text: string;
   buttons: ButtonConfig;
+  buttonsStacked?: boolean;
   legalText?: string;
 };
 

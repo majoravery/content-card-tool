@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { InAppConfig, Horizontal } from "./InAppConfig";
+import { InAppConfig, Vertical } from "./InAppConfig";
 import Editor from "./editor/Editor";
 import Preview from "./preview/Preview";
 import Export from "./export/Export";
@@ -21,17 +21,17 @@ const EditorPreviewContainer = styled.div`
   justify-content: space-between;
 `;
 
-const emptyButton = { text: "", link: "" };
 const emptyConfig = {
-  kind: Horizontal,
+  kind: Vertical,
   headline: "Get 10% off Soundcloud pro unlimited",
-  imageUrl: "https://placekitten.com/400/600",
+  imageUrl: "https://placekitten.com/520/200",
   text:
     "Make sure you’re staying on track. Renew today to regain access to advanced stats, more upload time, spotlight, and quiet mode for 10% off the annual price.",
   buttons: {
-    primary: { text: "Renew Pro Unlimited with 10% discount", link: "" },
-    secondary: emptyButton
+    primary: { text: "Renew Pro Unlimited", link: "" },
+    secondary: { text: "Secondary", link: "" }
   },
+  buttonsStacked: true,
   legalText: "*Discount applies to first year only"
 };
 

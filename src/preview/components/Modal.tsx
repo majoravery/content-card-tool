@@ -27,8 +27,6 @@ const ModalClose = styled.a`
 
 const ModalContent = styled.div`
   background-color: #fff;
-  width: 790px;
-  min-height: 350px;
   overflow: auto;
 `;
 

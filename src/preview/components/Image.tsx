@@ -15,3 +15,8 @@ export const VerticalImage = styled(Image)`
   width: 250px;
   min-height: 350px;
 `;
+
+export const HorizontalImage = styled(Image)`
+  width: 520px;
+  height: 180px;
+`;

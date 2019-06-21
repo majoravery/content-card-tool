@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { soundcloudOrange, white, umber } from "../../colors";
 
@@ -6,7 +7,15 @@ type ButtonProps = {
   stretch?: boolean;
 };
 
-export const PrimaryButton = styled.a<ButtonProps>`
+export const Button: React.FunctionComponent<
+  ButtonProps & React.HTMLProps<HTMLAnchorElement>
+> = ({ children, stretch, minWidth, ...otherProps }) => (
+  <a {...otherProps}>
+    <span>{children}</span>
+  </a>
+);
+
+export const PrimaryButton = styled(Button)`
   border-radius: 4px;
   background-color: ${soundcloudOrange};
   padding: 14px 12px;
@@ -17,7 +26,9 @@ export const PrimaryButton = styled.a<ButtonProps>`
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: ${umber};

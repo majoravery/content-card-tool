@@ -16,7 +16,7 @@ export const Horizontal: React.FC<TemplateProps> = ({
 }) => {
   return (
     <HorizontalTemplateContainer>
-      <VerticalImage src={imageUrl} />
+      {imageUrl && <VerticalImage src={imageUrl} />}
       <VerticalContentContainer>
         <Headline>{headline}</Headline>
         <Description>{text}</Description>

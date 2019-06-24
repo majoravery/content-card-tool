@@ -19,11 +19,23 @@ const PreviewContainer = styled.div`
   height: 700px;
 `;
 
+export const ExternalCSS = `
+  <link
+    rel="stylesheet"
+    href="https://style.sndcdn.com/css/interstate-9a7e854c95d1b49e3807d5ea457e6e538034dc55.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://style.sndcdn.com/css/interstate-black-7f3b53f03ea97c0871dc7f62474617224e3aa7e1.css"
+  />
+`;
+
 const Preview: React.FC<PreviewProps> = ({ config }) => {
   return (
     <div>
       <h2>Preview</h2>
       <PreviewContainer>
+        <div dangerouslySetInnerHTML={{ __html: ExternalCSS }} />
         <PreviewContent config={config} />
       </PreviewContainer>
     </div>
@@ -34,14 +46,6 @@ export const PreviewContent: React.FC<PreviewProps> = ({ config }) => {
   const Template = getTemplate(config.kind);
   return (
     <React.Fragment>
-      <link
-        rel="stylesheet"
-        href="https://style.sndcdn.com/css/interstate-9a7e854c95d1b49e3807d5ea457e6e538034dc55.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://style.sndcdn.com/css/interstate-black-7f3b53f03ea97c0871dc7f62474617224e3aa7e1.css"
-      />
       <Modal>
         <Container>{Template && <Template config={config} />}</Container>
       </Modal>

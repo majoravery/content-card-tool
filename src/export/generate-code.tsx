@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import * as StyledComponents from "styled-components";
 
 import { InAppConfig } from "../InAppConfig";
-import { PreviewContent } from "../preview/Preview";
+import { PreviewContent, ExternalCSS } from "../preview/Preview";
 
 const {
   __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS
@@ -28,7 +28,11 @@ export default function generateCode(config: InAppConfig) {
   );
   const renderedCSS = StyleSheet.instance.toHTML();
 
+  const css = `
+    ${ExternalCSS}
+    ${renderedCSS}
+  `;
   return ReactDOMServer.renderToString(
-    <ExportWrapper css={renderedCSS} body={renderedHTML} />
+    <ExportWrapper css={css} body={renderedHTML} />
   );
 }

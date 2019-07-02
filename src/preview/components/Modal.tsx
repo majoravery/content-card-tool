@@ -12,6 +12,7 @@ const ModalElement = styled.div`
   background-color: rgba(242, 242, 242, 0.9);
   justify-content: center;
   align-items: center;
+  padding: 76px 0px;
 `;
 
 const ModalClose = styled.a`
@@ -28,6 +29,7 @@ const ModalClose = styled.a`
 const ModalContent = styled.div`
   background-color: #fff;
   overflow: auto;
+  max-height: 100%;
 `;
 
 /**

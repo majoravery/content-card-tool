@@ -60,6 +60,7 @@ const Form: React.FC<EditorProps> = ({ config, setConfig }) => {
         <Input
           label="Text"
           value={config.buttons.primary.text}
+          maxLength={95}
           onChange={setButtonConfig(config, setConfig, {
             name: "primary",
             prop: "text"
@@ -85,6 +86,7 @@ const Form: React.FC<EditorProps> = ({ config, setConfig }) => {
             <Input
               label="Text"
               value={config.buttons.secondary.text}
+              maxLength={95}
               onChange={setButtonConfig(config, setConfig, {
                 name: "secondary",
                 prop: "text"

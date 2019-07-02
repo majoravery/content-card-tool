@@ -28,7 +28,7 @@ export const VerticalTemplateContainer = styled(VerticalContainer)`
 `;
 
 export const VerticalContentContainer = styled(VerticalContainer)`
-  padding: ${contentPadding}px;
+  padding: 20px ${contentPadding}px;
 `;
 
 export const VerticalContentContainerNoImage = styled(VerticalContainer)`

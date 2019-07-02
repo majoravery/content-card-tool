@@ -23,14 +23,20 @@ type InputProps = {
   label: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  maxLength?: number;
 };
 
-const Input: React.FC<InputProps> = ({ label, value, onChange }) => {
+const Input: React.FC<InputProps> = ({ label, value, maxLength, onChange }) => {
   return (
     <React.Fragment>
       <label>
         <StyledLabel>{label}</StyledLabel>
-        <StyledInput type="text" value={value} onChange={onChange} />
+        <StyledInput
+          type="text"
+          value={value}
+          maxLength={maxLength}
+          onChange={onChange}
+        />
       </label>
     </React.Fragment>
   );

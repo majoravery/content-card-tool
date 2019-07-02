@@ -18,7 +18,7 @@ export const Button: React.FunctionComponent<
 export const PrimaryButton = styled(Button)`
   border-radius: 4px;
   background-color: ${soundcloudOrange};
-  padding: 14px 12px;
+  padding: 14px 16px;
   font-size: 17px;
   border: 0;
   letter-spacing: 0.4px;

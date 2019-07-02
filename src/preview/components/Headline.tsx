@@ -6,8 +6,7 @@ export const Headline = styled.h1`
   font-weight: 900;
   font-family: "Interstate-Black", "Interstate";
   line-height: 1.25;
-  letter-spacing: 0.4px;
   text-transform: uppercase;
   color: ${raven};
-  margin: 4px 0;
+  margin: 0px;
 `;

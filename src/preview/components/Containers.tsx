@@ -9,7 +9,7 @@ export const HorizontalContainer = styled.div`
 `;
 
 export const HorizontalTemplateContainer = styled(HorizontalContainer)`
-  width: 790px;
+  max-width: 790px;
   min-height: 350px;
 `;
 

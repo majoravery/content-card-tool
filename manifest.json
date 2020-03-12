@@ -1,8 +1,8 @@
 {
   "name": "in-app-tool",
   "description": "A web app that allows the CRM team to creat HTML in-app-messages",
-  "contact_email": "creator-growth@soundcloud.com",
-  "owner": "creator-growth",
+  "contact_email": "creator-workflow@soundcloud.com",
+  "owner": "creator-workflow",
   "status": "beta",
   "data_sensitivity": ["no_user_data"],
   "dependencies": []

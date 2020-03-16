@@ -2,7 +2,7 @@
 format_version: 2
 pipelines:
   in-app-tool:
-    group: creator-growth
+    group: creator-workflow-team
     label_template: "${COUNT}-${git[:7]}"
     materials:
       git:

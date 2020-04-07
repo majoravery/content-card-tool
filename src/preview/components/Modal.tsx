@@ -37,14 +37,14 @@ const ModalContent = styled.div`
  * exported code. It can not depend on variables outside of its own scope.
  */
 function closeModal() {
-  const closeButton: HTMLAnchorElement | null = document.querySelector(
-    ".js-inAppModal__close"
-  );
   function close() {
-    if (closeButton) {
-      closeButton.click();
-    }
+    (window as any).appboyBridge.closeMessage();
   }
+  const closeButton = document.querySelector(".js-inAppModal__close");
+  if (closeButton) {
+    closeButton.addEventListener("click", close);
+  }
+
   // Close modal with ESC
   document.addEventListener("keyup", event => {
     if (event.keyCode === 27) {
@@ -72,10 +72,7 @@ function closeModal() {
 export const Modal: React.FC = ({ children }) => {
   return (
     <ModalElement>
-      <ModalClose
-        className="js-inAppModal__close"
-        href="javascript:appboyBridge.closeMessage()"
-      />
+      <ModalClose className="js-inAppModal__close" />
       <ModalContent className="js-inAppModal__content">{children}</ModalContent>
 
       <script

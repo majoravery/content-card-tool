@@ -28,7 +28,7 @@ publish-deploy:
 	sc artifact-manager deploy publish \
 		--ingress=http://in-app-tool.lb.$(ZONE).s-cloud.net:http \
 		--ingress=http://in-app-tool.int.s-cloud.net:http \
-		--ingress=https://in-app-tool.soundcloud.org \
+		--ingress=https://in-app-tool.soundcloud.org:http \
 		--zone="$(ZONE)" \
 		--prometheus.port=telemetry
 

@@ -35,6 +35,7 @@ pipelines:
       - deploy:
           jobs:
             deploy:
+              job_type: deploy
               tasks:
                 - exec:
                     command: make

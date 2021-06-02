@@ -2,7 +2,7 @@
 
 This web app allows the CRM team to create HTML/CSS modals for Braze in-app messages.
 
-http://go/inapptool
+https://go.soundcloud.org/inapptool
 
 ## Development
 

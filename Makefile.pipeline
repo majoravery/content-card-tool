@@ -1,4 +1,4 @@
-BUILD_STACK = nodejs-12-dev
+BUILD_STACK = nodejs-lts-dev
 
 ZONE ?= db
 

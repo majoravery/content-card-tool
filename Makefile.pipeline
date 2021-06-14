@@ -1,6 +1,6 @@
 BUILD_STACK = nodejs-12-dev
 
-ZONE ?= db
+ZONES ?= db
 
 .PHONY: build assemble package publish promote-to-stable promote-to-release publish-deploy deploy clean
 
@@ -26,14 +26,14 @@ promote-to-release:
 
 publish-deploy:
 	sc artifact-manager deploy publish \
-		--ingress=http://in-app-tool.lb.$(ZONE).s-cloud.net:http \
+		--ingress=http://in-app-tool:http \
 		--ingress=http://in-app-tool.int.s-cloud.net:http \
 		--ingress=https://in-app-tool.soundcloud.org:http \
 		--zone="$(ZONE)" \
 		--prometheus.port=telemetry
 
 deploy:
-	sc artifact-manager deploy run --zone=$(ZONE)
+	sc artifact-manager deploy run --zones=$(ZONES)
 
 clean:
 	rm -rf target build

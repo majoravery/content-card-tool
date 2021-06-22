@@ -29,7 +29,7 @@ publish-deploy:
 		--ingress=http://in-app-tool:http \
 		--ingress=http://in-app-tool.int.s-cloud.net:http \
 		--ingress=https://in-app-tool.soundcloud.org:http \
-		--zone="$(ZONE)" \
+		--zones=$(ZONES) \
 		--prometheus.port=telemetry
 
 deploy:

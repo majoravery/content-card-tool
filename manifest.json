@@ -4,6 +4,5 @@
   "contact_email": "audio-workflow@soundcloud.com",
   "owner": "audio-workflow-team",
   "status": "beta",
-  "data_sensitivity": ["no_user_data"],
   "dependencies": []
 }

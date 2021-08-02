@@ -4,5 +4,6 @@
   "contact_email": "audio-workflow@soundcloud.com",
   "owner": "audio-workflow-team",
   "status": "beta",
+  "_schema": "soundcloud/applicationmanifest/v1",
   "dependencies": []
 }

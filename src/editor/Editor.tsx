@@ -1,46 +1,126 @@
-import React from "react";
-import { InAppConfig, InAppKinds, InAppKind } from "../InAppConfig";
-import { KindButton } from "./Buttons";
-import Form from "./Form";
-import styled from "styled-components";
+import React from 'react';
+import {
+  ContentCardConfig,
+  DashboxLayout,
+  DashboxLayouts,
+  AdZones,
+  Background
+} from '../ContentCardConfig';
+import { Button } from './Buttons';
+import Form from './Form';
+import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   margin-bottom: 1em;
 `;
 
-type KindSetter = React.Dispatch<React.SetStateAction<InAppConfig>>;
+const StyledLabel = styled.div`
+  margin-bottom: 0.3em;
+`;
+
+type LayoutSetter = React.Dispatch<React.SetStateAction<ContentCardConfig>>;
 
 type EditorProps = {
-  config: InAppConfig;
-  setConfig: KindSetter;
+  config: ContentCardConfig;
+  setConfig: LayoutSetter;
 };
 
 const Editor: React.FC<EditorProps> = ({ config, setConfig }) => {
   return (
     <div>
       <h2>Editor</h2>
+      <StyledLabel>Layout</StyledLabel>
       <ButtonContainer>
-        {InAppKinds.map(kind => (
-          <KindButton
-            key={kind}
-            selected={kind === config.kind}
-            onClick={setKind(kind, config, setConfig)}
+        {DashboxLayouts.map((layout) => (
+          <Button
+            key={layout}
+            selected={layout === config.layout}
+            onClick={setLayout(layout, config, setConfig)}
           >
-            {kind}
-          </KindButton>
+            {layout}
+          </Button>
         ))}
+      </ButtonContainer>
+
+      <StyledLabel>Background</StyledLabel>
+      <ButtonContainer>
+        {Object.keys(Background).map((key) => {
+          const value = Background[key];
+          return (
+            <Button
+              key={key}
+              selected={value === config.background}
+              onClick={setBackground(value, config, setConfig)}
+            >
+              {key}
+            </Button>
+          );
+        })}
+      </ButtonContainer>
+
+      <StyledLabel>Ad zones</StyledLabel>
+      <ButtonContainer>
+        {Object.keys(AdZones).map((key) => {
+          const value = AdZones[key];
+          return (
+            <Button
+              key={key}
+              selected={config.adZones.indexOf(value) > -1}
+              onClick={setAdZones(value, config, setConfig)}
+            >
+              {key}
+            </Button>
+          );
+        })}
       </ButtonContainer>
       <Form config={config} setConfig={setConfig} />
     </div>
   );
 };
 
-function setKind(kind: InAppKind, config: InAppConfig, setConfig: KindSetter) {
+function setLayout(
+  layout: DashboxLayout,
+  config: ContentCardConfig,
+  setConfig: LayoutSetter
+) {
   return function() {
     setConfig({
       ...config,
-      kind
+      layout
     });
+  };
+}
+
+function setBackground(
+  background: string,
+  config: ContentCardConfig,
+  setConfig: LayoutSetter
+) {
+  return function() {
+    setConfig({
+      ...config,
+      background
+    });
+  };
+}
+
+function setAdZones(
+  zone: string,
+  config: ContentCardConfig,
+  setConfig: LayoutSetter
+) {
+  return function() {
+    if (config.adZones.indexOf(zone) > -1) {
+      return setConfig({
+        ...config,
+        adZones: config.adZones.filter((z) => z !== zone)
+      });
+    } else {
+      return setConfig({
+        ...config,
+        adZones: [...config.adZones, zone]
+      });
+    }
   };
 }
 

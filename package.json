@@ -1,5 +1,5 @@
 {
-  "name": "in-app-tool",
+  "name": "content-card-tool",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,8 +8,10 @@
     "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "^4.1.16",
+    "gh-pages": "^3.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.0.1",
     "styled-components": "^4.2.0",
     "typescript": "3.5.1"
@@ -18,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,5 +41,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx|ts|tsx)\""
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always"
   }
 }

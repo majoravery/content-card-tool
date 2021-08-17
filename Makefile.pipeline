@@ -26,9 +26,9 @@ promote-to-release:
 
 publish-deploy:
 	sc artifact-manager deploy publish \
-		--ingress=http://in-app-tool:http \
-		--ingress=http://in-app-tool.int.s-cloud.net:http \
-		--ingress=https://in-app-tool.soundcloud.org:http \
+		--ingress=http://content-card-tool:http \
+		--ingress=http://content-card-tool.int.s-cloud.net:http \
+		--ingress=https://content-card-tool.soundcloud.org:http \
 		--zones=$(ZONES) \
 		--prometheus.port=telemetry
 

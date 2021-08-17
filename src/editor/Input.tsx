@@ -1,6 +1,6 @@
-import React, { ChangeEvent } from "react";
-import styled from "styled-components";
-import { platinum, raven } from "../colors";
+import React, { ChangeEvent } from 'react';
+import styled from 'styled-components';
+import { platinum, raven } from '../colors';
 
 const StyledInput = styled.input`
   border: 1px solid ${platinum};

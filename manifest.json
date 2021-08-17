@@ -1,6 +1,6 @@
 {
-  "name": "in-app-tool",
-  "description": "A web app that allows the CRM team to creat HTML in-app-messages",
+  "name": "content-card-tool",
+  "description": "A web app that allows the CRM team to creat HTML content-card-messages",
   "contact_email": "marketing-tech@soundcloud.com",
   "owner": "marketing-tech-team",
   "status": "beta",

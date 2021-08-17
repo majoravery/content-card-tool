@@ -1,52 +1,37 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { InAppConfig } from "../InAppConfig";
-import { Button } from "../editor/Buttons";
-import generateCode from "./generate-code";
-import { raven } from "../colors";
+import React from 'react';
+import styled from 'styled-components';
+import { ContentCardConfig } from '../ContentCardConfig';
+import Field from './Field';
+import generateKvp from './generate-code';
 
-const VerticalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+const StyledLabel = styled.div`
+  margin-bottom: 0.3em;
 `;
 
-const CopyMessage = styled.div`
-  margin: 10px 0px;
-  color: ${raven};
+const StyledFieldContainer = styled.div`
+  margin-bottom: 1em;
 `;
 
 type ExportProps = {
-  config: InAppConfig;
+  config: ContentCardConfig;
 };
 
 const Export: React.FC<ExportProps> = ({ config }) => {
-  const [showCopyMessage, setShowCopyMessage] = useState(false);
-
+  const kvp = generateKvp(config);
   return (
-    <VerticalContainer>
-      <Button
-        onClick={() => {
-          copyToClipboard(generateCode(config));
-          setShowCopyMessage(true);
-          setTimeout(() => setShowCopyMessage(false), 3000);
-        }}
-      >
-        Copy Code
-      </Button>
-      {showCopyMessage && <CopyMessage>Copied to clipboard!</CopyMessage>}
-    </VerticalContainer>
+    <div>
+      <h2>Export</h2>
+      <StyledLabel>Key value pairs</StyledLabel>
+      {Object.keys(kvp).map((key) => {
+        return (
+          <StyledFieldContainer key={key}>
+            <Field value={key} />
+            <Field value={kvp[key]} />
+          </StyledFieldContainer>
+        );
+      })}
+    </div>
   );
-};
-
-const copyToClipboard = (text: string) => {
-  const el = document.createElement("textarea");
-  el.value = text;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
 };
 
 export default Export;

@@ -1,12 +1,12 @@
 ---
 format_version: 2
 pipelines:
-  in-app-tool:
+  content-card-tool:
     group: marketing-tech-team
     label_template: "${COUNT}-${git[:7]}"
     materials:
       git:
-        git: git@github.com:soundcloud/in-app-tool.git
+        git: git@github.com:soundcloud/content-card-tool.git
     stages:
       - build:
           jobs:

@@ -1,49 +1,54 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { InAppConfig, Vertical } from "./InAppConfig";
-import Editor from "./editor/Editor";
-import Preview from "./preview/Preview";
-import Export from "./export/Export";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import {
+  ContentCardConfig,
+  Background,
+  DashboxImage,
+  AdZones
+} from './ContentCardConfig';
+import Editor from './editor/Editor';
+import Preview from './preview/Preview';
+import Export from './export/Export';
 
 const AppContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 1em 5em;
-  max-width: 1150px;
+  padding: 1em 4em;
+  max-width: 1248px;
 
   @media (max-width: 1200px) {
     padding: 1em;
   }
 }`;
 
-const EditorPreviewContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+const Container = styled.div`
+  margin-right: 1em;
+  width: 400px;
 `;
 
 const emptyConfig = {
-  kind: Vertical,
-  headline: "Get 10% off Soundcloud pro unlimited",
-  imageUrl: "https://placekitten.com/520/200",
-  text:
-    "Make sure you’re staying on track. Renew today to regain access to advanced stats, more upload time, spotlight, and quiet mode for 10% off the annual price.",
-  buttons: {
-    primary: { text: "Renew Pro Unlimited", link: "" },
-    secondary: { text: "Secondary", link: "" }
-  },
-  buttonsStacked: true,
-  legalText: "*Discount applies to first year only"
+  adZones: [AdZones.stream],
+  layout: DashboxImage,
+  title: 'Spotlight your work with Pro',
+  description: 'Feature your best tracks and playlists with a Pro account',
+  background: Background.CreatorGradient,
+  ctaText: 'Try Pro Unlimited',
+  control: false,
+  tcode: 't1234'
 };
 
 const App: React.FC = () => {
-  const [config, setConfig] = useState<InAppConfig>(emptyConfig);
+  const [config, setConfig] = useState<ContentCardConfig>(emptyConfig);
   return (
     <AppContainer>
-      <EditorPreviewContainer>
+      <Container>
         <Editor config={config} setConfig={setConfig} />
+      </Container>
+      <Container>
         <Preview config={config} />
-      </EditorPreviewContainer>
-      <Export config={config} />
+      </Container>
+      <Container>
+        <Export config={config} />
+      </Container>
     </AppContainer>
   );
 };

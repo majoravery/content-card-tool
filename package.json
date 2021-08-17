@@ -1,5 +1,5 @@
 {
-  "name": "in-app-tool",
+  "name": "content-card-tool",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "@types/styled-components": "^4.1.16",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.0.1",
     "styled-components": "^4.2.0",
     "typescript": "3.5.1"
@@ -38,5 +39,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx|ts|tsx)\""
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always"
   }
 }

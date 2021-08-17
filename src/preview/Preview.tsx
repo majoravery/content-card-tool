@@ -1,22 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import { InAppConfig, Horizontal, InAppKind, Vertical } from "../InAppConfig";
-import { Horizontal as HorizontalTemplate } from "./templates/Horizontal";
-import { Vertical as VerticalTemplate } from "./templates/Vertical";
-import { Modal } from "./components/Modal";
+import React from 'react';
+import styled from 'styled-components';
+import { ContentCardConfig } from '../ContentCardConfig';
+import { Template } from './Template';
 
 type PreviewProps = {
-  config: InAppConfig;
+  config: ContentCardConfig;
 };
-
-const Container = styled.div`
-  font-family: "Interstate";
-`;
 
 const PreviewContainer = styled.div`
   position: relative;
-  width: 850px;
-  height: 700px;
+  width: 300px;
+  height: 250px;
 `;
 
 export const ExternalCSS = `
@@ -36,32 +30,10 @@ const Preview: React.FC<PreviewProps> = ({ config }) => {
       <h2>Preview</h2>
       <PreviewContainer>
         <div dangerouslySetInnerHTML={{ __html: ExternalCSS }} />
-        <PreviewContent config={config} />
+        <Template config={config} />
       </PreviewContainer>
     </div>
   );
 };
-
-export const PreviewContent: React.FC<PreviewProps> = ({ config }) => {
-  const Template = getTemplate(config.kind);
-  return (
-    <React.Fragment>
-      <Modal>
-        <Container>{Template && <Template config={config} />}</Container>
-      </Modal>
-    </React.Fragment>
-  );
-};
-
-function getTemplate(kind: InAppKind) {
-  switch (kind) {
-    case Horizontal:
-      return HorizontalTemplate;
-    case Vertical:
-      return VerticalTemplate;
-    default:
-      return null;
-  }
-}
 
 export default Preview;

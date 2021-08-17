@@ -1,134 +1,72 @@
-import React, { ChangeEvent } from "react";
-import { InAppConfig, ButtonConfig, Vertical } from "../InAppConfig";
-import Input from "./Input";
-import styled from "styled-components";
+import React, { ChangeEvent } from 'react';
+import { ContentCardConfig } from '../ContentCardConfig';
+import Input from './Input';
+import styled from 'styled-components';
 
 const StyledInputContainer = styled.div`
   margin-bottom: 1em;
 `;
 
-const StyledSectionLabel = styled.div`
-  margin-bottom: 0.5em;
-  font-weight: 500;
-`;
-
-type ConfigSetter = React.Dispatch<React.SetStateAction<InAppConfig>>;
+type ConfigSetter = React.Dispatch<React.SetStateAction<ContentCardConfig>>;
 type EditorProps = {
-  config: InAppConfig;
+  config: ContentCardConfig;
   setConfig: ConfigSetter;
 };
 
 const Form: React.FC<EditorProps> = ({ config, setConfig }) => {
-  const hasSecondaryButton = config.kind === Vertical;
   return (
     <React.Fragment>
-      <StyledSectionLabel>General</StyledSectionLabel>
       <StyledInputContainer>
         <Input
-          label="Headline"
-          value={config.headline}
-          onChange={setConfigProp(config, setConfig, "headline")}
+          label="Title"
+          value={config.title}
+          onChange={setConfigProp(config, setConfig, 'title')}
         />
       </StyledInputContainer>
 
       <StyledInputContainer>
         <Input
-          label="Image URL"
-          value={config.imageUrl}
-          onChange={setConfigProp(config, setConfig, "imageUrl")}
+          label="Description"
+          value={config.description}
+          onChange={setConfigProp(config, setConfig, 'description')}
         />
       </StyledInputContainer>
 
       <StyledInputContainer>
         <Input
-          label="Text"
-          value={config.text}
-          onChange={setConfigProp(config, setConfig, "text")}
+          label="CTA text"
+          value={config.ctaText}
+          onChange={setConfigProp(config, setConfig, 'ctaText')}
         />
       </StyledInputContainer>
 
       <StyledInputContainer>
         <Input
-          label="Legal Text"
-          value={config.legalText || ""}
-          onChange={setConfigProp(config, setConfig, "legalText")}
-        />
-      </StyledInputContainer>
-
-      <StyledSectionLabel>Primary Button</StyledSectionLabel>
-      <StyledInputContainer>
-        <Input
-          label="Text"
-          value={config.buttons.primary.text}
-          onChange={setButtonConfig(config, setConfig, {
-            name: "primary",
-            prop: "text"
-          })}
+          label="Tcode"
+          value={config.tcode}
+          onChange={setConfigProp(config, setConfig, 'tcode')}
         />
       </StyledInputContainer>
 
       <StyledInputContainer>
-        <Input
-          label="Link"
-          value={config.buttons.primary.link}
-          onChange={setButtonConfig(config, setConfig, {
-            name: "primary",
-            prop: "link"
-          })}
-        />
+        <label>
+          <input
+            type="checkbox"
+            checked={config.control}
+            onChange={setConfigProp(config, setConfig, 'control', 'checked')}
+          />
+          Control card
+        </label>
       </StyledInputContainer>
-
-      {hasSecondaryButton && (
-        <React.Fragment>
-          <StyledSectionLabel>Secondary Button</StyledSectionLabel>
-          <StyledInputContainer>
-            <Input
-              label="Text"
-              value={config.buttons.secondary.text}
-              onChange={setButtonConfig(config, setConfig, {
-                name: "secondary",
-                prop: "text"
-              })}
-            />
-          </StyledInputContainer>
-
-          <StyledInputContainer>
-            <Input
-              label="Link"
-              value={config.buttons.secondary.link}
-              onChange={setButtonConfig(config, setConfig, {
-                name: "secondary",
-                prop: "link"
-              })}
-            />
-          </StyledInputContainer>
-
-          <StyledInputContainer>
-            <label>
-              <input
-                type="checkbox"
-                checked={config.buttonsStacked}
-                onChange={setConfigProp(
-                  config,
-                  setConfig,
-                  "buttonsStacked",
-                  "checked"
-                )}
-              />
-              stack buttons
-            </label>
-          </StyledInputContainer>
-        </React.Fragment>
-      )}
     </React.Fragment>
   );
 };
 
 function setConfigProp(
-  config: InAppConfig,
+  config: ContentCardConfig,
   setConfig: ConfigSetter,
-  prop: keyof InAppConfig,
-  valueKey?: "checked" | "value"
+  prop: keyof ContentCardConfig,
+  valueKey?: 'checked' | 'value'
 ) {
   return function(event: ChangeEvent<HTMLInputElement>) {
     setConfig({
@@ -136,25 +74,6 @@ function setConfigProp(
       [prop]: valueKey
         ? event.currentTarget[valueKey]
         : event.currentTarget.value
-    });
-  };
-}
-
-function setButtonConfig(
-  config: InAppConfig,
-  setConfig: ConfigSetter,
-  button: { name: keyof ButtonConfig; prop: "text" | "link" }
-) {
-  return function(event: ChangeEvent<HTMLInputElement>) {
-    setConfig({
-      ...config,
-      buttons: {
-        ...config.buttons,
-        [button.name]: {
-          ...config.buttons[button.name],
-          [button.prop]: event.currentTarget.value
-        }
-      }
     });
   };
 }

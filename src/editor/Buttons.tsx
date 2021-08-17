@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components";
-import { black, platinum, raven } from "../colors";
+import styled, { css } from 'styled-components';
+import { black, platinum, raven } from '../colors';
 
-export const Button = styled.div`
+export const StyledButton = styled.div`
   border: 1px solid ${platinum};
   display: inline-block;
-  padding: 1em;
+  padding: 0.5em 1em;
   cursor: pointer;
 
   &:hover {
@@ -12,11 +12,11 @@ export const Button = styled.div`
   }
 `;
 
-type KindButtonProps = {
+type ButtonProps = {
   selected: boolean;
 };
-export const KindButton = styled(Button)<KindButtonProps>`
-  ${props =>
+export const Button = styled(StyledButton)<ButtonProps>`
+  ${(props) =>
     props.selected &&
     css`
       border-color: ${black};

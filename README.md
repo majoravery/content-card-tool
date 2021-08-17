@@ -1,4 +1,4 @@
-# In-App-Tool
+# content-card-Tool
 
 This web app allows the CRM team to create HTML/CSS modals for Braze in-app messages.
 
@@ -20,7 +20,7 @@ The app is split into three main parts: `editor`, `export` and `preview`.
 
 ### Styling
 
-The in-app-tool uses [styled-components](https://www.styled-components.com/) to style its own components as well as to style the static exported components. We chose `styled-components` after carful considerations of all alternatives. The goal of this app is to generate static HTML/CSS that we can generate solely on the client. Other styling solutions usually require webpack to generate the styles during the build process. With `styled-components` we are able to extract all of the app's CSS on the client. Previous concerns with `styled-components` were all related to its runtime performance which don't apply in the case of our generated HTML/CSS since the output of the export are regular CSS classes. The runtime-concerns might apply for running the tool itself, but it's a very tiny codebase so we should not see a performance hit there.
+The content-card-tool uses [styled-components](https://www.styled-components.com/) to style its own components as well as to style the static exported components. We chose `styled-components` after carful considerations of all alternatives. The goal of this app is to generate static HTML/CSS that we can generate solely on the client. Other styling solutions usually require webpack to generate the styles during the build process. With `styled-components` we are able to extract all of the app's CSS on the client. Previous concerns with `styled-components` were all related to its runtime performance which don't apply in the case of our generated HTML/CSS since the output of the export are regular CSS classes. The runtime-concerns might apply for running the tool itself, but it's a very tiny codebase so we should not see a performance hit there.
 
 ### Export
 

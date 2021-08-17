@@ -1,38 +1,15 @@
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import * as StyledComponents from "styled-components";
+/* eslint-disable no-template-curly-in-string */
+import { DashboxImage, ContentCardConfig } from '../ContentCardConfig';
 
-import { InAppConfig } from "../InAppConfig";
-import { PreviewContent, ExternalCSS } from "../preview/Preview";
-
-const {
-  __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS
-} = StyledComponents as any;
-const { StyleSheet } = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
-
-type ExportWrapperProps = {
-  css: string;
-  body: string;
-};
-export const ExportWrapper: React.FC<ExportWrapperProps> = ({ css, body }) => (
-  <html>
-    <head dangerouslySetInnerHTML={{ __html: css }} />
-    <body dangerouslySetInnerHTML={{ __html: body }} />
-  </html>
-);
-
-export default function generateCode(config: InAppConfig) {
-  StyleSheet.reset(true);
-  const renderedHTML = ReactDOMServer.renderToString(
-    <PreviewContent config={config} />
-  );
-  const renderedCSS = StyleSheet.instance.toHTML();
-
-  const css = `
-    ${ExternalCSS}
-    ${renderedCSS}
-  `;
-  return ReactDOMServer.renderToString(
-    <ExportWrapper css={css} body={renderedHTML} />
-  );
+export default function generateKvp(
+  config: ContentCardConfig
+): { [key: string]: string } {
+  return {
+    adZone: config.adZones.join(','),
+    background: config.background,
+    contentCardId: '{{campaign.${api_id}}}',
+    layout: config.layout === DashboxImage ? 'dashbox-image' : 'dashbox-icon',
+    tcode: config.tcode ? config.tcode : '',
+    control: config.control ? 'true' : 'false'
+  };
 }
